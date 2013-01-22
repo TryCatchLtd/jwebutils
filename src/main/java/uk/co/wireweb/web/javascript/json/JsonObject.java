@@ -12,14 +12,14 @@ import java.util.List;
 public class JsonObject {
 
     private String name;
-
     private JsonObject parent;
-
     private List<JsonObject> children = new ArrayList<JsonObject>();
-
     private List<JsonKeyValuePair<?>> members = new ArrayList<JsonKeyValuePair<?>>();
-
     private List<JsonArray> arrays = new ArrayList<JsonArray>();
+
+    public JsonObject() {
+        this("");
+    }
 
     public JsonObject(final String name) {
         this.name = name;
@@ -62,9 +62,9 @@ public class JsonObject {
         return this;
     }
 
-    public JsonKeyValuePair<?> getMember(final String key) {
+    public JsonKeyValuePair getMember(final String key) {
         if (!this.members.isEmpty()) {
-            for (final JsonKeyValuePair<?> jsonKeyValuePair : this.members) {
+            for (final JsonKeyValuePair jsonKeyValuePair : this.members) {
                 if (jsonKeyValuePair.getKey().equals(key)) {
                     return jsonKeyValuePair;
                 }
@@ -80,6 +80,52 @@ public class JsonObject {
         }
 
         return this;
+    }
+
+    public Integer getInt(final String key) {
+        final JsonKeyValuePair jsonKeyValuePair = this.getMember(key);
+
+        if (jsonKeyValuePair == null || !(jsonKeyValuePair.getValue() instanceof Integer)) {
+            return null;
+        }
+
+        return (Integer) jsonKeyValuePair.getValue();
+    }
+
+    public JsonObject member(final String name, final Integer value) {
+        return this.member(new JsonKeyValuePair<Integer>(name, value));
+    }
+
+    public JsonObject member(final String name, final String value) {
+        return this.member(new JsonKeyValuePair<String>(name, value));
+    }
+
+    public JsonObject member(final String name, final Boolean value) {
+        return this.member(new JsonKeyValuePair<Boolean>(name, value));
+    }
+
+    public JsonObject member(final String name, final Long value) {
+        return this.member(new JsonKeyValuePair<Long>(name, value));
+    }
+
+    public JsonObject member(final String name, final Short value) {
+        return this.member(new JsonKeyValuePair<Short>(name, value));
+    }
+
+    public JsonObject member(final String name, final Byte value) {
+        return this.member(new JsonKeyValuePair<Byte>(name, value));
+    }
+
+    public JsonObject member(final String name, final Character value) {
+        return this.member(new JsonKeyValuePair<Character>(name, value));
+    }
+
+    public JsonObject member(final String name, final Float value) {
+        return this.member(new JsonKeyValuePair<Float>(name, value));
+    }
+
+    public JsonObject member(final String name, final Double value) {
+        return this.member(new JsonKeyValuePair<Double>(name, value));
     }
 
     @Override
