@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/TryCatchLtd/jwebutils.png?branch=master)](https://travis-ci.org/TryCatchLtd/jwebutils)
+
 jwebutils
 =========
 
